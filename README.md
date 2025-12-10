@@ -28,6 +28,9 @@ npm run init-db
 # Limpar banco (apagar tudo)
 npm run clear-db
 
+# Migrar banco existente (adicionar campos de localização)
+npm run migrate-location
+
 # Limpar e recriar
 npm run clear-db && npm run init-db
 ```
@@ -164,10 +167,11 @@ DATAS/
 
 ### Backend:
 ```bash
-npm run init-db   # Criar banco com dados de exemplo
-npm run clear-db  # Limpar banco (apagar tudo)
-npm run dev       # Iniciar em modo desenvolvimento
-npm start         # Iniciar em modo produção
+npm run init-db          # Criar banco com dados de exemplo
+npm run clear-db         # Limpar banco (apagar tudo)
+npm run migrate-location # Migrar banco existente (adicionar localização)
+npm run dev              # Iniciar em modo desenvolvimento
+npm start                # Iniciar em modo produção
 ```
 
 ### Frontend:

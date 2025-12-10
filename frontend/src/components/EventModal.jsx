@@ -7,7 +7,9 @@ const EventModal = ({ isOpen, onClose, onSave, event, selectedDate }) => {
     start_date: '',
     end_date: '',
     color: '#3174ad',
-    description: ''
+    description: '',
+    city: '',
+    state: ''
   });
 
   useEffect(() => {
@@ -19,7 +21,9 @@ const EventModal = ({ isOpen, onClose, onSave, event, selectedDate }) => {
         start_date: startDate,
         end_date: endDate,
         color: event.color || '#3174ad',
-        description: event.description || ''
+        description: event.description || '',
+        city: event.city || '',
+        state: event.state || ''
       });
     } else if (selectedDate) {
       const dateStr = moment(selectedDate).format('YYYY-MM-DD');
@@ -28,7 +32,9 @@ const EventModal = ({ isOpen, onClose, onSave, event, selectedDate }) => {
         start_date: dateStr,
         end_date: dateStr,
         color: '#3174ad',
-        description: ''
+        description: '',
+        city: '',
+        state: ''
       });
     } else {
       const dateStr = moment().format('YYYY-MM-DD');
@@ -37,7 +43,9 @@ const EventModal = ({ isOpen, onClose, onSave, event, selectedDate }) => {
         start_date: dateStr,
         end_date: dateStr,
         color: '#3174ad',
-        description: ''
+        description: '',
+        city: '',
+        state: ''
       });
     }
   }, [event, selectedDate, isOpen]);
@@ -119,6 +127,30 @@ const EventModal = ({ isOpen, onClose, onSave, event, selectedDate }) => {
               value={formData.color}
               onChange={handleChange}
               className="color-input"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Cidade</label>
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              placeholder="Ex: São Paulo"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Estado</label>
+            <input
+              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              placeholder="Ex: SP"
+              maxLength="2"
+              style={{ textTransform: 'uppercase' }}
             />
           </div>
 

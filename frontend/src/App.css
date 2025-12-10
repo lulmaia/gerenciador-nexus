@@ -40,3 +40,44 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Estilos para agrupamento por data */
+.date-group {
+  margin-bottom: 2rem;
+}
+
+.date-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 1.5rem 0 0.8rem 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid #e0e0e0;
+  text-align: left;
+}
+
+.event-location {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.3rem 0;
+  font-style: italic;
+}
+
+.event-card {
+  margin-bottom: 0.8rem;
+}
+
+/* Melhorar espaçamento dos campos no modal */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.form-group input[name="state"] {
+  width: 80px;
+}

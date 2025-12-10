@@ -7,7 +7,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "init-db": "node init-db.js",
-    "clear-db": "node clear-db.js"
+    "clear-db": "node clear-db.js",
+    "migrate-db": "node migrate-db.js",
+    "migrate-location": "node migrate-location.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

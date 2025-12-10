@@ -13,14 +13,17 @@ const eventController = {
 
   // POST /events - Criar novo evento
   createEvent: (req, res) => {
-    const { title, date, color, description } = req.body;
+    const { title, start_date, end_date, date, color, description, city, state } = req.body;
     
-    if (!title || !date) {
+    // Aceitar tanto formato antigo (date) quanto novo (start_date)
+    const startDate = start_date || date;
+    if (!title || !startDate) {
       return res.status(400).json({ error: 'Título e data são obrigatórios' });
     }
 
-    const sql = 'INSERT INTO events (title, date, color, description) VALUES (?, ?, ?, ?)';
-    const params = [title, date, color || '#3174ad', description || ''];
+    const finalEndDate = end_date || startDate;
+    const sql = 'INSERT INTO events (title, date, start_date, end_date, color, description, city, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const params = [title, startDate, startDate, finalEndDate, color || '#3174ad', description || '', city || '', state || ''];
 
     db.run(sql, params, function(err) {
       if (err) {
@@ -39,14 +42,17 @@ const eventController = {
   // PUT /events/:id - Atualizar evento
   updateEvent: (req, res) => {
     const { id } = req.params;
-    const { title, date, color, description } = req.body;
+    const { title, start_date, end_date, date, color, description, city, state } = req.body;
 
-    if (!title || !date) {
+    // Aceitar tanto formato antigo (date) quanto novo (start_date)
+    const startDate = start_date || date;
+    if (!title || !startDate) {
       return res.status(400).json({ error: 'Título e data são obrigatórios' });
     }
 
-    const sql = 'UPDATE events SET title = ?, date = ?, color = ?, description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?';
-    const params = [title, date, color, description, id];
+    const finalEndDate = end_date || startDate;
+    const sql = 'UPDATE events SET title = ?, date = ?, start_date = ?, end_date = ?, color = ?, description = ?, city = ?, state = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?';
+    const params = [title, startDate, startDate, finalEndDate, color, description, city || '', state || '', id];
 
     db.run(sql, params, function(err) {
       if (err) {
