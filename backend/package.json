@@ -9,7 +9,8 @@
     "init-db": "node init-db.js",
     "clear-db": "node clear-db.js",
     "migrate-db": "node migrate-db.js",
-    "migrate-location": "node migrate-location.js"
+    "migrate-location": "node migrate-location.js",
+    "migrate-holidays": "node migrate-holidays.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

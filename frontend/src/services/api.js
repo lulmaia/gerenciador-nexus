@@ -23,4 +23,9 @@ export const eventService = {
   deleteEvent: (id) => api.delete(`/events/${id}`)
 };
 
+export const holidayService = {
+  // Buscar feriados do ano
+  getHolidays: (year) => api.get(`/holidays/${year}`)
+};
+
 export default api;
