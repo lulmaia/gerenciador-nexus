@@ -22,13 +22,19 @@ const EventDetailModal = ({ isOpen, onClose, event, onEdit, onDelete }) => {
         </div>
 
         <div className="form-group">
-          <label>Data</label>
+          <label>Período</label>
           <div style={{ 
             padding: '10px', 
             background: '#f8f9fa', 
             borderRadius: '4px' 
           }}>
-            {moment(event.date + 'T12:00:00').format('DD/MM/YYYY')}
+            {(() => {
+              const startDate = moment(event.start_date || event.date).format('DD/MM/YYYY');
+              const endDate = event.end_date && event.end_date !== (event.start_date || event.date) 
+                ? moment(event.end_date).format('DD/MM/YYYY')
+                : null;
+              return endDate ? `${startDate} - ${endDate}` : startDate;
+            })()}
           </div>
         </div>
 

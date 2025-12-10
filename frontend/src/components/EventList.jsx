@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 const EventList = ({ events, onEditEvent, onDeleteEvent, onAddEvent }) => {
-  const sortedEvents = events.sort((a, b) => new Date(a.date) - new Date(b.date));
+  const sortedEvents = events.sort((a, b) => new Date(a.start_date || a.date) - new Date(b.start_date || b.date));
 
   return (
     <div className="events-section">
@@ -22,7 +22,13 @@ const EventList = ({ events, onEditEvent, onDeleteEvent, onAddEvent }) => {
           >
             <div className="event-title">{event.title}</div>
             <div className="event-date">
-              {moment(event.date + 'T12:00:00').format('DD/MM/YYYY')}
+              {(() => {
+                const startDate = moment(event.start_date || event.date).format('DD/MM/YYYY');
+                const endDate = event.end_date && event.end_date !== (event.start_date || event.date) 
+                  ? moment(event.end_date).format('DD/MM/YYYY')
+                  : null;
+                return endDate ? `${startDate} - ${endDate}` : startDate;
+              })()}
             </div>
             {event.description && (
               <div className="event-description">{event.description}</div>

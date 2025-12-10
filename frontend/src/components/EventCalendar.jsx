@@ -7,13 +7,15 @@ const localizer = momentLocalizer(moment);
 
 const EventCalendar = ({ events, onSelectEvent, onSelectSlot }) => {
   const calendarEvents = events.map(event => {
-    // Corrigir problema de fuso horário
-    const eventDate = new Date(event.date + 'T12:00:00');
+    // Usar start_date e end_date se disponíveis, senão usar date
+    const startDate = new Date((event.start_date || event.date) + 'T12:00:00');
+    const endDate = new Date((event.end_date || event.start_date || event.date) + 'T23:59:59');
+    
     return {
       id: event.id,
       title: event.title,
-      start: eventDate,
-      end: eventDate,
+      start: startDate,
+      end: endDate,
       resource: event
     };
   });
